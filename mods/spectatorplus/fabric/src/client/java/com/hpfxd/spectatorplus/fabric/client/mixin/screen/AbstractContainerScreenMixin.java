@@ -1,0 +1,189 @@
+package com.hpfxd.spectatorplus.fabric.client.mixin.screen;
+
+import com.hpfxd.spectatorplus.fabric.client.SpectatorClientMod;
+import com.hpfxd.spectatorplus.fabric.client.gui.screens.ItemMoveAnimation;
+import com.hpfxd.spectatorplus.fabric.client.sync.ClientSyncController;
+import com.hpfxd.spectatorplus.fabric.client.sync.screen.ScreenSyncController;
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.renderer.RenderPipelines;
+import net.minecraft.resources.Identifier;
+import net.minecraft.util.Mth;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerInput;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.Nullable;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Mixin(AbstractContainerScreen.class)
+public abstract class AbstractContainerScreenMixin {
+    @Unique
+    private static final int MOVE_ANIMATION_TICKS = 4;
+
+    @Unique
+    private final List<ItemMoveAnimation> animations = new ArrayList<>();
+
+    @Unique
+    private ItemStack cursorItem = ItemStack.EMPTY;
+    @Unique
+    private int cursorSlot = -1;
+
+    @Unique
+    private int originalMouseX = -1;
+    @Unique
+    private int originalMouseY = -1;
+    @Unique
+    private boolean mouseMoved;
+
+    @Shadow @Final private static Identifier SLOT_HIGHLIGHT_BACK_SPRITE;
+    @Shadow @Final private static Identifier SLOT_HIGHLIGHT_FRONT_SPRITE;
+    @Shadow protected abstract void extractFloatingItem(GuiGraphicsExtractor guiGraphics, ItemStack stack, int x, int y, String text);
+    @Shadow @Final protected AbstractContainerMenu menu;
+    @Shadow @Nullable protected abstract Slot getHoveredSlot(double mouseX, double mouseY);
+    @Shadow protected int leftPos;
+    @Shadow protected int topPos;
+
+    @Inject(
+            method = "slotClicked(Lnet/minecraft/world/inventory/Slot;IILnet/minecraft/world/inventory/ContainerInput;)V",
+            at = @At("HEAD"),
+            cancellable = true
+    )
+    private void spectatorplus$noClickingOnSyncedScreens(Slot slot, int slotId, int mouseButton, ContainerInput type, CallbackInfo ci) {
+        if (this.spectatorplus$isSyncedScreen()) {
+            ci.cancel();
+        }
+    }
+
+    @Inject(
+            method = "extractContents(Lnet/minecraft/client/gui/GuiGraphicsExtractor;IIF)V",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/client/gui/screens/inventory/AbstractContainerScreen;extractSlotHighlightFront(Lnet/minecraft/client/gui/GuiGraphicsExtractor;)V",
+                    ordinal = 0
+            )
+    )
+    private void spectatorplus$renderSyncedCursorItem(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTick, CallbackInfo ci) {
+        if (!this.spectatorplus$isSyncedScreen()) {
+            return;
+        }
+
+        // Target can die / camera can switch mid-frame, clearing syncData while this screen is still open.
+        // Do not close here (render path) — tick / camera-switch handlers close the screen.
+        if (ClientSyncController.syncData == null || ClientSyncController.syncData.screen == null) {
+            return;
+        }
+
+        if (this.originalMouseX == -1 && this.originalMouseY == -1) {
+            this.originalMouseX = mouseX;
+            this.originalMouseY = mouseY;
+        }
+
+        if (mouseX != this.originalMouseX && mouseY != this.originalMouseY) {
+            this.mouseMoved = true;
+        }
+
+        ItemStack cursorItem = ClientSyncController.syncData.screen.cursorItem;
+        if (cursorItem == null) {
+            cursorItem = ItemStack.EMPTY;
+        }
+        int cursorSlot = ClientSyncController.syncData.screen.cursorItemSlot;
+
+        if (this.cursorItem != cursorItem) {
+            if (cursorSlot != -1 && this.cursorSlot != -1 && this.cursorSlot != cursorSlot) {
+                final ItemStack animationItem = this.cursorItem.isEmpty() ? cursorItem : this.cursorItem;
+
+                if (!animationItem.isEmpty() && this.menu.isValidSlotIndex(this.cursorSlot) && this.menu.isValidSlotIndex(cursorSlot)) {
+                    this.animations.add(new ItemMoveAnimation(this.cursorSlot, cursorSlot, animationItem));
+                }
+            }
+        }
+
+        this.cursorItem = cursorItem;
+        this.cursorSlot = cursorItem.isEmpty() ? -1 : cursorSlot;
+
+        if (!this.animations.isEmpty() || !this.cursorItem.isEmpty()) {
+            // make sure the cursor items are rendered on top of the slot contents
+            guiGraphics.nextStratum();
+        }
+
+        for (final ItemMoveAnimation animation : this.animations) {
+            final Slot fromSlot = this.menu.getSlot(animation.fromSlot);
+            final Slot toSlot = this.menu.getSlot(animation.toSlot);
+
+            final float delta = (animation.tick + partialTick) / (float) MOVE_ANIMATION_TICKS;
+            final int cursorX = Math.round(Mth.lerp(delta, fromSlot.x, toSlot.x));
+            final int cursorY = Math.round(Mth.lerp(delta, fromSlot.y, toSlot.y));
+
+            this.spectatorplus$renderCursorItem(guiGraphics, animation.itemStack, cursorX, cursorY);
+        }
+
+        if (!this.cursorItem.isEmpty() && this.cursorSlot > 0 && this.menu.isValidSlotIndex(this.cursorSlot)) {
+            final Slot slot = this.menu.getSlot(this.cursorSlot);
+            this.spectatorplus$renderCursorItem(guiGraphics, this.cursorItem, slot.x, slot.y);
+        }
+    }
+
+    @Unique
+    private void spectatorplus$renderCursorItem(GuiGraphicsExtractor guiGraphics, ItemStack stack, int cursorX, int cursorY) {
+        final Slot hoverSlot = this.getHoveredSlot(cursorX + this.leftPos + 8, cursorY + this.topPos + 8);
+        if (hoverSlot != null && hoverSlot.isHighlightable()) {
+            guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, SLOT_HIGHLIGHT_BACK_SPRITE, hoverSlot.x - 4, hoverSlot.y - 4, 24, 24);
+        }
+        this.extractFloatingItem(guiGraphics, stack, cursorX, cursorY, null);
+        if (hoverSlot != null && hoverSlot.isHighlightable()) {
+            guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, SLOT_HIGHLIGHT_FRONT_SPRITE, hoverSlot.x - 4, hoverSlot.y - 4, 24, 24);
+        }
+    }
+
+    @Inject(
+            method = "tick()V",
+            at = @At("TAIL")
+    )
+    private void spectatorplus$tickCursorItem(CallbackInfo ci) {
+        if (!this.spectatorplus$isSyncedScreen()) {
+            return;
+        }
+
+        if (ClientSyncController.syncData == null || ClientSyncController.syncData.screen == null) {
+            ScreenSyncController.closeSyncedInventory();
+            return;
+        }
+
+        this.animations.removeIf(animation -> ++animation.tick >= MOVE_ANIMATION_TICKS);
+    }
+
+    @ModifyExpressionValue(
+            method = "extractTooltip(Lnet/minecraft/client/gui/GuiGraphicsExtractor;II)V",
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/inventory/Slot;hasItem()Z")
+    )
+    private boolean spectatorplus$hideTooltipUntilMouseMove(boolean original) {
+        return original && (!this.spectatorplus$isSyncedScreen() || !SpectatorClientMod.config.hideTooltipUntilMouseMove || this.mouseMoved);
+    }
+
+    @ModifyExpressionValue(
+            method = {
+                    "extractSlotHighlightBack(Lnet/minecraft/client/gui/GuiGraphicsExtractor;)V",
+                    "extractSlotHighlightFront(Lnet/minecraft/client/gui/GuiGraphicsExtractor;)V"
+            },
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/inventory/Slot;isHighlightable()Z", ordinal = 0)
+    )
+    private boolean spectatorplus$hideHoverUntilMoveMouse(boolean original) {
+        return original && (!this.spectatorplus$isSyncedScreen() || !SpectatorClientMod.config.hideTooltipUntilMouseMove || this.mouseMoved);
+    }
+
+    @Unique
+    private boolean spectatorplus$isSyncedScreen() {
+        return (Object) this == ScreenSyncController.syncedScreen;
+    }
+}

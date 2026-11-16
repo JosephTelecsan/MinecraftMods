@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "com.manhunt.entitycounter.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"DebugScreenEntryListMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

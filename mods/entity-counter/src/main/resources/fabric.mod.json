@@ -1,0 +1,29 @@
+{
+	"schemaVersion": 1,
+	"id": "manhunt-entity-counter",
+	"version": "${version}",
+	"name": "Manhunt Entity Counter",
+	"description": "Restores the classic F3 entity counter (E: rendered/total, SD: sim) on Minecraft 26.3 by keeping entity_render_stats enabled.",
+	"authors": [
+		"Manhunt Officiator"
+	],
+	"license": "MIT",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"com.manhunt.entitycounter.EntityCounterClient"
+		]
+	},
+	"mixins": [
+		{
+			"config": "manhunt-entity-counter.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.20.1",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}

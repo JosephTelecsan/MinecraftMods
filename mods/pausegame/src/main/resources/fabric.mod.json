@@ -1,0 +1,26 @@
+{
+	"schemaVersion": 1,
+	"id": "manhunt-pausegame",
+	"version": "${version}",
+	"name": "Manhunt Pause Game",
+	"description": "Adds /pausegame to freeze the world, mobs, time, and all players except the executor — for manhunt breaks and technical pauses.",
+	"authors": [
+		"Manhunt Officiator"
+	],
+	"license": "MIT",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.manhunt.pausegame.ManhuntPauseGame"
+		]
+	},
+	"mixins": [
+		"manhunt-pausegame.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.20.1",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}

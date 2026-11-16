@@ -1,0 +1,23 @@
+{
+	"schemaVersion": 1,
+	"id": "manhunt-teamchat",
+	"version": "${version}",
+	"name": "Manhunt Team Chat",
+	"description": "Team chat channels for Lprogrammer Manhunt. Use /chat hunter or /chat runner so normal chat only reaches that scoreboard team; /chat global restores public chat.",
+	"authors": [
+		"Manhunt Officiator"
+	],
+	"license": "CC0-1.0",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.manhunt.teamchat.ManhuntTeamChat"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.20.1",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}

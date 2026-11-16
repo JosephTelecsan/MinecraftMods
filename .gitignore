@@ -1,0 +1,36 @@
+# Gradle / Loom
+.gradle/
+**/build/
+**/run/
+**/runs/
+**/out/
+**/.fabric/
+**/remapState.properties
+*.jar
+!**/gradle/wrapper/gradle-wrapper.jar
+
+# Local release jars stay on disk; rebuild via scripts/sync-releases.ps1
+releases/*.jar
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.code-workspace
+.cursor/
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Logs / temp
+*.log
+**/logs/
+**/compile-*.txt
+**/build-out.txt
+.tmp-*/
+_trash-*/
+
+# Leftover empty folder from reorganization (real project is mods/entity-counter)
+/entity-counter/

@@ -1,0 +1,22 @@
+{
+	"schemaVersion": 1,
+	"id": "manhunt-more-pearls",
+	"version": "${version}",
+	"name": "Manhunt More Pearls",
+	"description": "Tunes piglin bartering ender pearls to ~6.7% with stacks of 4-7 (above classic 1.16 rates). Host-only for Open to LAN manhunts.",
+	"authors": [
+		"Manhunt Officiator"
+	],
+	"license": "MIT",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.manhunt.morepearls.ManhuntMorePearls"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.20.1",
+		"minecraft": "~26.3",
+		"java": ">=25"
+	}
+}

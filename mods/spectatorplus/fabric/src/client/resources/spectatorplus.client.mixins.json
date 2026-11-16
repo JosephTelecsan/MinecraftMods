@@ -1,0 +1,32 @@
+{
+  "required": true,
+  "package": "com.hpfxd.spectatorplus.fabric.client.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "ClientLevelAccessor",
+    "ClientLevelMixin",
+    "EntityMixin",
+    "GameRendererMixin",
+    "ExperienceBarMixin",
+    "HudMixin",
+    "LevelExtractorMixin",
+    "LocalPlayerAccessor",
+    "LocalPlayerMixin",
+    "LivingEntityMixin",
+    "MinecraftMixin",
+    "PlayerMenuItemAccessor",
+    "PlayerMenuItemMixin",
+    "SpectatorGuiAccessor",
+    "SpectatorMenuAccessor",
+    "screen.AbstractContainerMenuMixin",
+    "screen.AbstractContainerScreenMixin",
+    "screen.AbstractRecipeBookScreenAccessor",
+    "screen.ImageButtonAccessor",
+    "screen.InventoryMenuMixin",
+    "screen.InventoryScreenMixin",
+    "screen.MenuScreensMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

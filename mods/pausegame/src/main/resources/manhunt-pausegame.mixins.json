@@ -1,0 +1,13 @@
+{
+	"required": true,
+	"package": "com.manhunt.pausegame.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"mixins": [
+		"TickRateManagerMixin",
+		"ServerGamePacketListenerImplMixin",
+		"ServerLevelMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

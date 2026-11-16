@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "com.hpfxd.spectatorplus.fabric.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ChunkMapAccessor",
+    "ServerGamePacketListenerImplMixin",
+    "ServerPlayerMixin",
+    "TrackedEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
