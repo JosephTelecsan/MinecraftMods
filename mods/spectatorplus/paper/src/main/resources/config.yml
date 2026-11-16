@@ -13,8 +13,8 @@ workarounds:
   # when spectators suddenly teleport far away out of view distance.
   auto-teleport-on-untrack: true
 
-  # Some of these workarounds contain code that hooks into server internals, bypassing some limitations
-  # of the Bukkit API. The downside to this is that it may not work on every server version, may fail.
+  # Some workarounds use server internals outside the usual Bukkit API.
+  # The downside is that they may not work on every server version, and may fail.
   # If this option is enabled, some workarounds will fall-back to using the Bukkit API to work, but
   # this may cause some unintended side-effects, including:
   # - When spectating a mob that has some kind of shader (creeper, enderman or spider), it may also be
