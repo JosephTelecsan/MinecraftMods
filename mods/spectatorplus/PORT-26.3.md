@@ -27,7 +27,7 @@ Paper module is still in the tree but not part of the Fabric build. License stay
 - `GuiMixin` → `HudMixin` (+ `ExperienceBarMixin`)
 - Dropped old hand/screen-effect/level renderer mixins that no longer apply
 - `LevelExtractorMixin` redirects first-person / fluid / fire / spectator hiding to the spectated player
-- `GameRendererMixin` fakes non-spectator mode in `renderItemInHand` so arms show
+- `GameRendererMixin` uses the normal hand-render path while spectating so arms show
 - `SpectatorHands` tracks hand items / swap / bob for the target
 - Server inject before `Inventory.setSelectedSlot`
 

@@ -2,7 +2,9 @@
 
 Small Fabric mods I made for Minecraft **26.3** manhunts (Open to LAN / Fabric Loader **0.20.1**).
 
-Mostly host-side stuff for officiating and pacing games. Entity counter is client-only.
+These are for private games you host with people who know the mods are installed — breaks, team chat, spectator tools, that kind of thing. They are not meant to hide features on someone else’s server.
+
+Mostly host-side utilities. Entity counter is client-only.
 
 ## Mods
 
@@ -10,7 +12,7 @@ Mostly host-side stuff for officiating and pacing games. Entity counter is clien
 |---|---|---|
 | [`mods/teamchat`](mods/teamchat) | `/chat hunter` · `/chat runner` · `/chat global` using Manhunt team tags | MIT |
 | [`mods/more-pearls`](mods/more-pearls) | Piglin pearl barters at ~6.7%, stacks 4–7 | MIT |
-| [`mods/pausegame`](mods/pausegame) | `/pausegame` freezes everyone else | MIT |
+| [`mods/pausegame`](mods/pausegame) | `/pausegame` pauses the match for a break | MIT |
 | [`mods/entity-counter`](mods/entity-counter) | Puts the old F3 entity counter back on | MIT |
 | [`mods/spectatorplus`](mods/spectatorplus) | SpectatorPlus ported to 26.3 | GPL-3.0-or-later |
 
@@ -38,7 +40,7 @@ gradlew.bat build
 Copy the newest jars into `releases/`:
 
 ```bat
-powershell -ExecutionPolicy Bypass -File .\scripts\sync-releases.ps1
+powershell -File .\scripts\sync-releases.ps1
 ```
 
 ## Notes

@@ -131,7 +131,7 @@ public class ScreenSyncHandler {
             if (!Permissions.check(spectator, INVENTORY_PERMISSION, true)) {
                 continue;
             }
-            // Don't steal focus if they already forced-open a view with the inventory key
+            // Keep the inventory screen the spectator already opened
             if (VIEWING.containsKey(spectator.getUUID())) {
                 continue;
             }

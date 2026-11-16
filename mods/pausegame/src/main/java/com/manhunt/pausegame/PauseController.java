@@ -204,7 +204,7 @@ public final class PauseController {
 		LOCKED.remove(player.getUUID());
 
 		if (paused && exemptPlayerId != null && exemptPlayerId.equals(player.getUUID())) {
-			// Host/executor left — auto-unpause so the manhunt cannot softlock forever.
+			// Host left while paused — resume so the world does not stay stuck.
 			broadcast(Component.literal("Pause executor left — auto-resuming the game.")
 					.withStyle(ChatFormatting.YELLOW));
 			unpause(player.getGameProfile().name() + " (disconnect)");

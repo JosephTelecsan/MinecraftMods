@@ -5,7 +5,7 @@ Target: Fabric, Minecraft **26.3**, Loader **0.20.1**, Java **25+**.
 Build under `mods/<name>/`, then:
 
 ```bat
-powershell -ExecutionPolicy Bypass -File .\scripts\sync-releases.ps1
+powershell -File .\scripts\sync-releases.ps1
 ```
 
 Upload from `releases/`. Keep the Modrinth license field matching `fabric.mod.json` + `LICENSE`.
@@ -39,11 +39,11 @@ Team chat for manhunt. `/chat hunter`, `/chat runner`, `/chat global`.
 ```text
 Team chat for manhunt worlds. Use /chat hunter, /chat runner, or /chat global.
 
-Routes chat through the hunters / runners scoreboard teams used by Lprogrammer’s Manhunt. Ops can hear both team channels. What you see depends on your team; /chat only changes where your messages go. Global chat still shows up while you’re in a team channel.
+Routes chat through the hunters / runners scoreboard teams used by Lprogrammer’s Manhunt. Operators can read team channels when running the match. What you see depends on your team; /chat only changes where your messages go. Global chat still shows up while you’re in a team channel.
 
 Works without Manhunt if those teams exist (the mod can create them). Not affiliated with Manhunt — just built to work with it.
 
-Server / host install only. Vanilla clients are fine.
+Install on the world host. Vanilla clients are fine.
 ```
 
 ---
@@ -92,25 +92,25 @@ Install on the host / server. LAN clients don’t need it.
 
 **Summary**
 
-`/pausegame` freezes the world and other players; you keep moving.
+`/pausegame` pauses the match for a break; the host who ran the command can still move.
 
 **Description**
 
 ```text
-/pausegame for breaks and tech pauses on 26.3.
+/pausegame for agreed breaks and pauses on 26.3.
 
 While paused:
-- world / mobs / time freeze
-- other players are locked
-- the person who paused can still move
-- if that player disconnects, the game unpauses
+- world / mobs / time pause
+- other players stay paused
+- the operator who paused can still move (to fix issues / talk)
+- if that player disconnects, the game resumes
 
 /pausegame
 /pausegame on
 /pausegame off
 /pausegame status
 
-Needs op / gamemaster level. Host install; vanilla clients OK.
+Needs operator permission. Install on the host. Vanilla clients OK.
 ```
 
 ---
@@ -158,7 +158,7 @@ SpectatorPlus on 26.3 — open the target’s inventory while spectating.
 ```text
 Unofficial Fabric port of SpectatorPlus to Minecraft 26.3.
 
-Spectators can open the target inventory (E), with hotbar / offhand sync fixes for manhunt officiating.
+For hosts/spectators in a match: view the spectated player’s hotbar and inventory (E) with sync fixes.
 
 Based on SpectatorPlus by hpfxd. GPL-3.0-or-later. Not an official release from the original author.
 ```

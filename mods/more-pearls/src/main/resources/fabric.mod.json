@@ -3,7 +3,7 @@
 	"id": "manhunt-more-pearls",
 	"version": "${version}",
 	"name": "Manhunt More Pearls",
-	"description": "Tunes piglin bartering ender pearls to ~6.7% with stacks of 4-7 (above classic 1.16 rates). Host-only for Open to LAN manhunts.",
+	"description": "Tunes piglin bartering ender pearls to ~6.7% with stacks of 4-7 (a bit above classic 1.16 rates). Install on the world host.",
 	"authors": [
 		"JosephTelecsan"
 	],

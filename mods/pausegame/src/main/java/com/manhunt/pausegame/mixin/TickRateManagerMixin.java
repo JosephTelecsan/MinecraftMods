@@ -11,8 +11,8 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(TickRateManager.class)
 public abstract class TickRateManagerMixin {
 	/**
-	 * Vanilla /tick freeze still ticks all players. During manhunt pause, freeze every player
-	 * except the exempt executor, and freeze vehicles that are not controlled by them.
+	 * Vanilla /tick freeze still ticks all players. During pause, keep only the
+	 * operator who paused (and their vehicle) moving.
 	 */
 	@ModifyReturnValue(method = "isEntityFrozen(Lnet/minecraft/world/entity/Entity;)Z", at = @At("RETURN"))
 	private boolean pausegame$freezeNonExemptPlayers(boolean original, Entity entity) {
@@ -25,14 +25,12 @@ public abstract class TickRateManagerMixin {
 				return PauseController.shouldFreeze(player);
 			}
 
-			// Keep exempt player's mounts/vehicles ticking; freeze everything else.
 			if (PauseController.hasExemptPassenger(entity)) {
 				return false;
 			}
 
 			return true;
 		} catch (RuntimeException e) {
-			// Never let pause logic crash the tick loop.
 			return original || PauseController.isPaused();
 		}
 	}

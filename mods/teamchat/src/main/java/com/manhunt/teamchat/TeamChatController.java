@@ -57,8 +57,8 @@ public final class TeamChatController {
 
 	/**
 	 * Who may SEND on a team channel. Visibility is separate: what you see is based
-	 * only on Manhunt team (and op overhear), never on your selected send channel.
-	 * Ops may send on either channel while spectating/officiating.
+	 * only on Manhunt team membership (operators may also receive team chat while
+	 * running the match), never on your selected send channel.
 	 */
 	public static boolean canUseChannel(ServerPlayer player, ChatMode mode) {
 		if (!mode.isTeamChannel()) {
@@ -132,7 +132,7 @@ public final class TeamChatController {
 
 	/**
 	 * Team-channel visibility ignores the recipient's /chat mode.
-	 * Hunters always see hunter-channel traffic; runners see runner; ops see both.
+	 * Team members see their channel; operators can also receive team chat.
 	 * Global traffic is never filtered here (vanilla delivers it to everyone).
 	 */
 	private static boolean shouldReceive(ServerPlayer sender, ServerPlayer recipient, ChatMode mode) {
