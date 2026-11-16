@@ -1,6 +1,6 @@
 # Manhunt More Pearls
 
-Piglin bartering pearls at ~6.7%, stacks 4–7. Minecraft 26.3 / Fabric.
+Piglin bartering pearls at ~6.7%, stacks 4-7. Minecraft 26.3 / Fabric.
 
 ```bat
 gradlew.bat build

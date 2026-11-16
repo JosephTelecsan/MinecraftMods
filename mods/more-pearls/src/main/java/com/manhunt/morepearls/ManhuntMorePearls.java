@@ -18,6 +18,6 @@ public class ManhuntMorePearls implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		LOGGER.info("Manhunt More Pearls loaded — piglin pearl trades ~6.7% (4-7)");
+		LOGGER.info("Manhunt More Pearls loaded - piglin pearl trades ~6.7% (4-7)");
 	}
 }

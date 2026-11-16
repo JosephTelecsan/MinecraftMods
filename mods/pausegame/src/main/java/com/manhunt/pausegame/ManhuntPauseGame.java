@@ -44,6 +44,6 @@ public class ManhuntPauseGame implements ModInitializer {
 			}
 		});
 
-		LOGGER.info("Manhunt Pause Game loaded — /pausegame");
+		LOGGER.info("Manhunt Pause Game loaded - /pausegame");
 	}
 }

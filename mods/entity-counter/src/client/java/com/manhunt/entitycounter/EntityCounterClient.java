@@ -26,7 +26,7 @@ public class EntityCounterClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		ClientLifecycleEvents.CLIENT_STARTED.register(EntityCounterClient::enableEntityCounter);
-		LOGGER.info("Manhunt Entity Counter loaded — classic F3 E: rendered/total will stay enabled");
+		LOGGER.info("Manhunt Entity Counter loaded - classic F3 E: rendered/total will stay enabled");
 	}
 
 	public static void enableEntityCounter(Minecraft client) {

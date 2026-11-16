@@ -53,14 +53,14 @@ public final class TeamChatCommands {
 			source.sendSuccess(
 					() -> Component.literal("Send channel: ")
 							.append(Component.literal("Global").withStyle(ChatFormatting.GREEN))
-							.append(Component.literal(" — your messages go to everyone.")),
+							.append(Component.literal(" - your messages go to everyone.")),
 					false
 			);
 		} else {
 			source.sendSuccess(
 					() -> Component.literal("Send channel: ")
 							.append(mode.label(color))
-							.append(Component.literal(" — your messages go only to ")
+							.append(Component.literal(" - your messages go only to ")
 									.append(Component.literal(mode.teamName())
 											.withStyle(style -> style.withColor(color)))
 									.append(Component.literal(". You still see global chat."))),

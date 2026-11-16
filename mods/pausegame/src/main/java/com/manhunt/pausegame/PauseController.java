@@ -111,7 +111,7 @@ public final class PauseController {
 		broadcast(Component.literal("GAME FULLY PAUSED by ")
 				.withStyle(ChatFormatting.GOLD)
 				.append(Component.literal(exemptPlayerName).withStyle(ChatFormatting.YELLOW))
-				.append(Component.literal(" — ticks, time, mobs, and all other players frozen. Only they can act.")
+				.append(Component.literal(" - ticks, time, mobs, and all other players frozen. Only they can act.")
 						.withStyle(ChatFormatting.GRAY)));
 
 		if (executor != null) {
@@ -204,8 +204,8 @@ public final class PauseController {
 		LOCKED.remove(player.getUUID());
 
 		if (paused && exemptPlayerId != null && exemptPlayerId.equals(player.getUUID())) {
-			// Host left while paused — resume so the world does not stay stuck.
-			broadcast(Component.literal("Pause executor left — auto-resuming the game.")
+			// Host left while paused - resume so the world does not stay stuck.
+			broadcast(Component.literal("Pause executor left - auto-resuming the game.")
 					.withStyle(ChatFormatting.YELLOW));
 			unpause(player.getGameProfile().name() + " (disconnect)");
 		}
@@ -240,7 +240,7 @@ public final class PauseController {
 		if (++reminderTicks >= REMINDER_INTERVAL_TICKS) {
 			reminderTicks = 0;
 			final String name = exemptPlayerName != null ? exemptPlayerName : "operator";
-			final Component overlay = Component.literal("FULL PAUSE by " + name + " — only they can act — /pausegame")
+			final Component overlay = Component.literal("FULL PAUSE by " + name + " - only they can act - /pausegame")
 					.withStyle(ChatFormatting.GOLD);
 			for (final ServerPlayer player : minecraftServer.getPlayerList().getPlayers()) {
 				try {
@@ -271,7 +271,7 @@ public final class PauseController {
 
 		LockedPose pose = LOCKED.get(player.getUUID());
 		if (pose == null || pose.dimension != player.level().dimension()) {
-			// Joined mid-pause, changed dimension somehow, or missing lock — re-lock where they are.
+			// Joined mid-pause, changed dimension somehow, or missing lock - re-lock where they are.
 			lockPlayer(player);
 			pose = LOCKED.get(player.getUUID());
 			if (pose == null) {
@@ -284,7 +284,7 @@ public final class PauseController {
 			player.fallDistance = 0F;
 			player.absSnapTo(pose.x, pose.y, pose.z, pose.yRot, pose.xRot);
 
-			// Sync client prediction every second. Use pauseTicks — frozen players no longer advance tickCount.
+			// Sync client prediction every second. Use pauseTicks - frozen players no longer advance tickCount.
 			if (pauseTicks % 20 == 0 && player.connection != null) {
 				player.connection.teleport(pose.x, pose.y, pose.z, pose.yRot, pose.xRot);
 			}

@@ -39,6 +39,6 @@ public class ManhuntTeamChat implements ModInitializer {
 
 		ServerLifecycleEvents.SERVER_STOPPING.register(server -> TeamChatController.clearAll());
 
-		LOGGER.info("Manhunt Team Chat loaded — /chat hunter | /chat runner | /chat global");
+		LOGGER.info("Manhunt Team Chat loaded - /chat hunter | /chat runner | /chat global");
 	}
 }

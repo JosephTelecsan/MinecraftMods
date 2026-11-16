@@ -11,13 +11,27 @@
 
 # Local release jars stay on disk; rebuild via scripts/sync-releases.ps1
 releases/*.jar
+live-release/*.jar
 
 # IDE
 .idea/
 *.iml
 .vscode/
 *.code-workspace
+
+# Local Cursor / agent stuff: never publish (voice samples, rules, personal notes, etc.)
 .cursor/
+**/.cursor/
+
+# Credentials / local secrets (belt and suspenders)
+.env
+.env.*
+*.pem
+*.p12
+credentials.json
+secrets.json
+**/local.properties
+
 
 # OS
 Thumbs.db

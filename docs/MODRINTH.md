@@ -18,13 +18,13 @@ Icons live in `assets/modrinth/`. Same general look: Minecraft pixel art, diagon
 
 ## Manhunt Team Chat
 
-Live on Modrinth already — metadata can still be edited.
+Live on Modrinth already. Metadata can still be edited.
 
 | | |
 |---|---|
 | Jar | `releases/manhunt-teamchat-1.0.5.jar` |
 | ID | `manhunt-teamchat` |
-| License | MIT (uploaded 1.0.5 may still say CC0 — update on next file) |
+| License | MIT (uploaded 1.0.5 may still say CC0, update on next file) |
 | Environment | Server-side only, works in singleplayer |
 | Required | Fabric API |
 | Optional | [Manhunt (Lprogrammer)](https://modrinth.com/datapack/manhunt_pack) |
@@ -41,7 +41,7 @@ Team chat for manhunt worlds. Use /chat hunter, /chat runner, or /chat global.
 
 Routes chat through the hunters / runners scoreboard teams used by Lprogrammer’s Manhunt. Operators can read team channels when running the match. What you see depends on your team; /chat only changes where your messages go. Global chat still shows up while you’re in a team channel.
 
-Works without Manhunt if those teams exist (the mod can create them). Not affiliated with Manhunt — just built to work with it.
+Works without Manhunt if those teams exist (the mod can create them). Not affiliated with Manhunt, just built to work with it.
 
 Install on the world host. Vanilla clients are fine.
 ```
@@ -56,21 +56,21 @@ Install on the world host. Vanilla clients are fine.
 | ID | `manhunt-more-pearls` |
 | License | MIT |
 | Environment | Server-side only, works in singleplayer |
-| Required | — |
+| Required | none |
 | Categories | Game Mechanics, Utility |
 
 **Summary**
 
-Piglin pearl barters at ~6.7%, stacks 4–7 (a bit above classic 1.16 rates).
+Piglin pearl barters at ~6.7%, stacks 4-7 (a bit above classic 1.16 rates).
 
 **Description**
 
 ```text
 Tweaks piglin bartering ender pearls for manhunt / speedrun-style worlds on 26.3.
 
-- Vanilla 26.3: ~2.13%, stacks 2–4
-- Classic 1.16 / 1.16.1: ~4.73%, stacks 4–8
-- This mod: ~6.7%, stacks 4–7
+- Vanilla 26.3: ~2.13%, stacks 2-4
+- Classic 1.16 / 1.16.1: ~4.73%, stacks 4-8
+- This mod: ~6.7%, stacks 4-7
 
 Only the ender pearl entry in the piglin bartering loot table changes.
 
@@ -145,13 +145,13 @@ Client-side only. Put it on whoever wants the readout. Server doesn’t need it.
 | | |
 |---|---|
 | Jar | `releases/spectatorplus-fabric-1.2.3-local-mc26.3.jar` |
-| License | GPL-3.0-or-later (keep this — upstream license) |
+| License | GPL-3.0-or-later (keep this, upstream license) |
 | Environment | Client and server |
 | Notes | Port of hpfxd’s SpectatorPlus. Credit them. Don’t relicense as MIT. |
 
 **Summary**
 
-SpectatorPlus on 26.3 — open the target’s inventory while spectating.
+SpectatorPlus on 26.3. Opens the target’s inventory while spectating.
 
 **Description**
 
@@ -175,10 +175,10 @@ Same base style as the Team Chat icon. Drop `assets/modrinth/team-chat/team-chat
 Minecraft Java Edition default texture pack pixel art mod icon, square 1:1, chunky visible pixels like a 32x32 item icon upscaled cleanly, flat 2D no blur no anti-aliasing, no text, no watermark, no UI chrome, high contrast. Background split diagonally bottom-left to top-right by a thick jagged black pixel line: upper-left is Minecraft grass block top texture (lime and forest green speckles), lower-right is Minecraft netherrack texture (red, maroon, dark brown speckles). Centered simple white/light-cyan pixel symbol with a thin darker outline.
 ```
 
-**More Pearls** — ender pearl + tiny gold accent  
-**Pause Game** — two-bar pause glyph, optional tiny frozen clock behind it  
-**Entity Counter** — small HUD panel + mob silhouette, no readable text  
-**SpectatorPlus** — spyglass / eye lens, optional faint inventory slots behind it  
+**More Pearls**: ender pearl + tiny gold accent  
+**Pause Game**: two-bar pause glyph, optional tiny frozen clock behind it  
+**Entity Counter**: small HUD panel + mob silhouette, no readable text  
+**SpectatorPlus**: spyglass / eye lens, optional faint inventory slots behind it  
 
 ---
 
