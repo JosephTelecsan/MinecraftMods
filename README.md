@@ -1,4 +1,4 @@
-# About
+﻿# About
 
 My Name is Joseph Telecsan. I created this repo as a spot for me to hold/present my minecraft mods. A lot of them started as small fixes for manhunt sessions, and at its current stage the project could see further use beyond that.
 
