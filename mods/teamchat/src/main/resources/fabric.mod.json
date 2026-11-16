@@ -5,9 +5,9 @@
 	"name": "Manhunt Team Chat",
 	"description": "Team chat channels for Lprogrammer Manhunt. Use /chat hunter or /chat runner so normal chat only reaches that scoreboard team; /chat global restores public chat.",
 	"authors": [
-		"Manhunt Officiator"
+		"JosephTelecsan"
 	],
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
@@ -21,3 +21,4 @@
 		"fabric-api": "*"
 	}
 }
+

@@ -1,49 +1,47 @@
-# Minecraft Manhunt Mods
+# MinecraftMod
 
-Fabric utility mods for **Minecraft 26.3** + **Fabric Loader 0.20.1**, built for Open-to-LAN manhunts.
+Small Fabric mods I made for Minecraft **26.3** manhunts (Open to LAN / Fabric Loader **0.20.1**).
+
+Mostly host-side stuff for officiating and pacing games. Entity counter is client-only.
 
 ## Mods
 
-| Folder | Mod | Side | License |
-|---|---|---|---|
-| `mods/teamchat` | Manhunt Team Chat | Server | MIT preferred (1.0.5 jar may still say CC0) |
-| `mods/more-pearls` | Manhunt More Pearls | Server | MIT |
-| `mods/pausegame` | Manhunt Pause Game | Server | MIT |
-| `mods/entity-counter` | Manhunt Entity Counter | Client | MIT |
-| `mods/spectatorplus` | SpectatorPlus 26.3 port | Client + server | GPL-3.0-or-later |
+| Path | What it does | License |
+|---|---|---|
+| [`mods/teamchat`](mods/teamchat) | `/chat hunter` · `/chat runner` · `/chat global` using Manhunt team tags | MIT |
+| [`mods/more-pearls`](mods/more-pearls) | Piglin pearl barters at ~6.7%, stacks 4–7 | MIT |
+| [`mods/pausegame`](mods/pausegame) | `/pausegame` freezes everyone else | MIT |
+| [`mods/entity-counter`](mods/entity-counter) | Puts the old F3 entity counter back on | MIT |
+| [`mods/spectatorplus`](mods/spectatorplus) | SpectatorPlus ported to 26.3 | GPL-3.0-or-later |
 
-## Layout
+Team Chat pairs with [Lprogrammer’s Manhunt](https://modrinth.com/datapack/manhunt_pack) (`hunters` / `runners` teams). It also works if those teams exist on their own.
+
+## Repo layout
 
 ```
-assets/modrinth/     Modrinth icons & prompt references
-docs/MODRINTH.md     Publishing guide (descriptions, deps, Nano Banana prompts)
-mods/                One Fabric project per mod
-releases/            Latest built jars only (local; sync script)
-scripts/             Repo helpers (sync-releases.ps1)
+mods/            source for each mod
+releases/        newest jars after a local sync (not committed)
+assets/modrinth/ icons / art references
+docs/            Modrinth notes, etc.
+scripts/         helpers
 ```
 
-## Build a mod
+## Building
+
+Needs JDK 25+.
 
 ```bat
 cd mods\more-pearls
 gradlew.bat build
 ```
 
-Then from the repo root:
+Copy the newest jars into `releases/`:
 
 ```bat
 powershell -ExecutionPolicy Bypass -File .\scripts\sync-releases.ps1
 ```
 
-Jars land in `releases/` (older versions of the same mod are removed).
+## Notes
 
-## Docs
-
-- **Modrinth upload notes:** [`docs/MODRINTH.md`](docs/MODRINTH.md)
-- **SpectatorPlus port notes:** [`mods/spectatorplus/PORT-26.3.md`](mods/spectatorplus/PORT-26.3.md)
-
-## Requirements
-
-- JDK **25+**
-- Fabric Loader **0.20.1**
-- Minecraft **26.3**
+- [Modrinth upload notes](docs/MODRINTH.md)
+- [SpectatorPlus port notes](mods/spectatorplus/PORT-26.3.md)

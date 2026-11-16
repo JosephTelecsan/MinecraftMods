@@ -5,7 +5,7 @@
 	"name": "Manhunt Entity Counter",
 	"description": "Restores the classic F3 entity counter (E: rendered/total, SD: sim) on Minecraft 26.3 by keeping entity_render_stats enabled.",
 	"authors": [
-		"Manhunt Officiator"
+		"JosephTelecsan"
 	],
 	"license": "MIT",
 	"environment": "client",

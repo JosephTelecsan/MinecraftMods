@@ -5,7 +5,7 @@
 	"name": "Manhunt Pause Game",
 	"description": "Adds /pausegame to freeze the world, mobs, time, and all players except the executor — for manhunt breaks and technical pauses.",
 	"authors": [
-		"Manhunt Officiator"
+		"JosephTelecsan"
 	],
 	"license": "MIT",
 	"environment": "*",

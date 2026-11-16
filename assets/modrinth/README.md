@@ -1,7 +1,6 @@
-# Modrinth assets
+# Modrinth art
 
-| Path | Use |
-|---|---|
-| `team-chat/team-chat-icon.png` | Submitted Team Chat icon (from Drawing-1.sketchpad) |
-| `team-chat/team-chat-variant-*.png/jpg` | Unused style variants / references |
-| Nano Banana prompts | See `docs/MODRINTH.md` |
+- `team-chat/team-chat-icon.png` — icon used on Modrinth
+- `team-chat/team-chat-variant-*` — other drafts / references
+
+Prompts and upload text: `docs/MODRINTH.md`
